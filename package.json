@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "node_modules/.bin/webpack src/main.js dist/bundle.js",
-    "watch": "node_modules/.bin/webpack src/main.js dist/bundle.js --watch"
+    "build": "node_modules/.bin/webpack",
+    "watch": "node_modules/.bin/webpack --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.18.2",
     "webpack": "^3.5.5"
   }
 }
