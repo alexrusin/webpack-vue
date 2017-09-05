@@ -1,5 +1,7 @@
-import announce from './Notification';
-require('./main.css');
+class Form {
+	constructor() {
+		alert('Yay form class');
+	}
+}
 
-//announce.notifier('Here was my message');
-announce.logger('console log message');
+new Form();
