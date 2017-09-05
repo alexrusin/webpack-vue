@@ -1,7 +1,2 @@
-class Form {
-	constructor() {
-		alert('Yay form class');
-	}
-}
+require('./main.scss');
 
-new Form();
