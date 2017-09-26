@@ -60,23 +60,74 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(1);
+Vue.component('task-list', {
 
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
+	template: '<div><task v-for="task in tasks">{{task.description}}</task></div>',
 
-// removed by extract-text-webpack-plugin
+	data: function data() {
+		return {
+			tasks: [{ description: 'Go to the store', completed: false }, { description: 'Take the garbage', completed: true }, { description: 'Finish lesson', completed: false }, { description: 'Clear inbox', completed: true }]
+		};
+	}
+});
+
+Vue.component('task', {
+
+	template: '<li><slot></slot></li>'
+
+});
+
+Vue.component('message', {
+	props: ['title', 'body'],
+
+	data: function data() {
+		return {
+			isVisible: true
+		};
+	},
+
+
+	template: '\n\n\t\t<article v-show="isVisible" class="message">\n\t      <div class="message-header">\n\t        <p>{{title}}</p>\n\t        <button @click="hideModal" class="delete" aria-label="delete"></button>\n\t      </div>\n\t      <div class="message-body">\n\t       {{body}}\n\t      </div>\n\t    </article> \n\t',
+
+	methods: {
+		hideModal: function hideModal() {
+			this.isVisible = false;
+		}
+	}
+
+});
+
+Vue.component('my-modal', {
+	data: function data() {
+		return {
+			visible: 'is-active'
+		};
+	},
+
+	template: '\n\t  <div class="modal is-active">\n\t    <div class="modal-background"></div>\n\t    <div class="modal-content">\n\t      <div class="box">\n\t        <slot></slot>\n\t      </div>\n\t    </div>\n\t    <button class="modal-close is-large" aria-label="close" @click="$emit(\'close\')"></button>\n\t  </div>\n\t'
+});
+
+var app = new Vue({
+
+	el: '#root',
+
+	data: {
+		showModal: false
+	}
+
+});
 
 /***/ })
-/******/ ]);
+
+/******/ });

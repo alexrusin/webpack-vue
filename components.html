@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Components</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css" />
+
+  <style>
+    body {
+      padding-top: 40px;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <div id="root" class="container">
+
+    <task-list></task-list>
+    <br>
+    <br>
+
+    <message title="Hello World" body="Lorem ipsum dolor sit amet, consectetur adipiscing elit."></message>
+    
+    
+    <my-modal v-show="showModal" @close="showModal = false">
+      <p>This is content of the modal</p>
+
+    </my-modal>
+
+    <button @click="showModal = true" class="button">Show Modal</button>
+
+
+    
+  </div>
+
+  
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="dist/vuecode.js"></script>
+
+</body>
+</html>

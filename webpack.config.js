@@ -7,7 +7,9 @@ module.exports = {
 
 	entry: {
 		
-		app:'./src/main.js'
+		app:'./src/main.js',
+
+		vuecode: './src/vue-code.js'
 	},
 
 	output: {

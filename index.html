@@ -4,13 +4,93 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Webpack Learning</title>
+  <title>Vue Learning</title>
+  <style>
+  	[v-cloak] {
+  		display:none;
+  	}
+
+  	.color-red {
+  		color:red;
+  	}
+  </style>
   
 </head>
 
 <body>
-   <h1>Hello World</h1>
-  
-   <script src="dist/bundle.js"></script>
+	<div id="root">
+		<h1 :class="className">List of Names</h1>
+		<h2 v-text="reversedMessage"></h2>
+		
+			<ul v-cloak>
+				<li v-for="name in names" v-text="name" >
+					
+					
+				</li>
+			</ul>
+
+		<input type="text" id="textInput" v-model="newName">
+		<button v-on:click="addName" v-bind:title="buttonTitle" v-text="buttonText"></button>
+		<button @click="toggleMe" :class="{'color-red': isClicked}">Toggle Me</button>
+
+		<h2 v-text="reversedMessage"></h2>
+		
+		<ul>
+			<li v-for="task in incompleteTasks">{{task.description}} | {{task.completed}}</li>
+		</ul>
+
+	</div>
+	
+  	<script src="https://unpkg.com/vue"></script>
+	<script>
+		
+
+		var app = new Vue({
+			el: '#root',
+			data: {
+				message: 'My Tasks',
+				isClicked: false,
+				className: 'color-red',
+				buttonText: 'Click Me',
+				buttonTitle: 'Click To Add Name',
+				newName: '',
+				names: ['Joe', 'Mary', 'Jane', 'Jack'],
+				tasks: [
+					{description: 'Go to the store', completed: false},
+					{description: 'Take the garbage', completed: true},
+					{description: 'Finish lesson', completed: false},
+					{description: 'Clear inbox', completed: true}
+				]
+			},
+
+			computed: {
+				reversedMessage() {
+					return this.message.split('').reverse().join('');
+				},
+
+				incompleteTasks() {
+					return this.tasks.filter(task => !task.completed);
+				}
+			},
+
+			methods: {
+				addName() {
+					this.names.push(this.newName);
+					this.newName = '';
+				},
+				toggleMe() {
+					this.isClicked = !this.isClicked;
+				}
+			}
+
+		});
+
+		
+			
+		
+	</script>
+
+
+	
 </body>
 </html>
