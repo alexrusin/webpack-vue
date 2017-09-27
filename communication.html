@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Communication</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.css" />
+
+  <style>
+    body {
+      padding-top: 40px;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <div id="root" class="container">
+
+	<coupon @applied="onCouponApplied"></coupon>
+	<click-btn></click-btn>
+	<h1 v-show="showApplied">Coupon was applied!</h1>
+
+
+
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="dist/vue2code.js"></script>
+
+</body>
+</html>

@@ -9,7 +9,9 @@ module.exports = {
 		
 		app:'./src/main.js',
 
-		vuecode: './src/vue-code.js'
+		vuecode: './src/vue-code.js',
+
+		vue2code: './src/vue-2-code.js'
 	},
 
 	output: {

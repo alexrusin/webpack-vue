@@ -60,122 +60,75 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Vue.component('task-list', {
+window.Event = new Vue();
 
-	template: '<div><task v-for="task in tasks">{{task.description}}</task></div>',
+Vue.component('coupon', {
 
-	data: function data() {
-		return {
-			tasks: [{ description: 'Go to the store', completed: false }, { description: 'Take the garbage', completed: true }, { description: 'Finish lesson', completed: false }, { description: 'Clear inbox', completed: true }]
-		};
-	}
-});
-
-Vue.component('task', {
-
-	template: '<li><slot></slot></li>'
-
-});
-
-Vue.component('message', {
-	props: ['title', 'body'],
+	template: '<input placeholder="Enter your coupon code" @blur="onCouponApplied" v-model="couponCode">',
 
 	data: function data() {
 		return {
-			isVisible: true
+			couponCode: ''
 		};
-	},
-
-
-	template: '\n\n\t\t<article v-show="isVisible" class="message">\n\t      <div class="message-header">\n\t        <p>{{title}}</p>\n\t        <button @click="hideModal" class="delete" aria-label="delete"></button>\n\t      </div>\n\t      <div class="message-body">\n\t       {{body}}\n\t      </div>\n\t    </article> \n\t',
-
-	methods: {
-		hideModal: function hideModal() {
-			this.isVisible = false;
-		}
-	}
-
-});
-
-Vue.component('my-modal', {
-	data: function data() {
-		return {
-			visible: 'is-active'
-		};
-	},
-
-	template: '\n\t  <div class="modal is-active">\n\t    <div class="modal-background"></div>\n\t    <div class="modal-content">\n\t      <div class="box">\n\t        <slot></slot>\n\t      </div>\n\t    </div>\n\t    <button class="modal-close is-large" aria-label="close" @click="$emit(\'close\')"></button>\n\t  </div>\n\t'
-});
-
-Vue.component('tabs', {
-	template: '\n\t<div>\n\t\t<div class="tabs">\n\t\t  <ul>\n\t\t     <li v-for="tab in tabs" :class="{\'is-active\': tab.isActive}">\n\t\t     \t<a :href="tab.href" @click="selectTab(tab)">{{tab.name}}</a>\n\t\t     </li>\n\t\t  </ul>\n\t\t</div>\n\n\t\t<div class="tabs-details">\n\t\t\t<slot></slot>\n\t\t</div>\n\t</div>\n\t',
-
-	data: function data() {
-		return {
-			tabs: []
-		};
-	},
-	created: function created() {
-		this.tabs = this.$children;
 	},
 
 
 	methods: {
-		selectTab: function selectTab(selectedTab) {
-			this.tabs.forEach(function (tab) {
-				tab.isActive = tab.name == selectedTab.name;
-			});
+		onCouponApplied: function onCouponApplied() {
+			this.$emit('applied', this.couponCode);
 		}
 	}
-
 });
 
-Vue.component('tab', {
+Vue.component('click-btn', {
 
-	props: {
-		'name': { required: true },
-		'selected': { default: false }
-	},
-	template: '\n\t\t<div v-show="isActive"><slot></slot></div>\n\t',
+	template: '<button class="button" @click="submitCoupon" v-text="btnText"></button>',
 
 	data: function data() {
 		return {
-			isActive: false
+			btnText: 'Submit Coupon'
 		};
 	},
 
 
-	computed: {
-		href: function href() {
-			return '#' + this.name.toLowerCase().replace(/ /g, '-');
+	methods: {
+		submitCoupon: function submitCoupon() {
+			Event.$emit('submitted');
 		}
-	},
-
-	mounted: function mounted() {
-		this.isActive = this.selected;
 	}
 });
 
-var app = new Vue({
+new Vue({
 
-	el: '#root',
+	el: root,
 
 	data: {
-		showModal: false,
-		showTab: true
-	}
+		showApplied: false
+	},
 
+	methods: {
+		onCouponApplied: function onCouponApplied(code) {
+			alert('It was applied ' + code);
+			this.showApplied = true;
+		}
+	},
+
+	created: function created() {
+		Event.$on('submitted', function () {
+			alert('Coupon Submitted!');
+		});
+	}
 });
 
 /***/ })
