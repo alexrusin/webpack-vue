@@ -27,7 +27,9 @@
     
     
     <my-modal v-show="showModal" @close="showModal = false">
-      <p>This is content of the modal</p>
+      <p>This is content of the modal.  Default slot</p>
+
+      <div slot="footer"><strong>This is named slot footer content<strong></div>
 
     </my-modal>
 

@@ -115,7 +115,7 @@ Vue.component('my-modal', {
 		};
 	},
 
-	template: '\n\t  <div class="modal is-active">\n\t    <div class="modal-background"></div>\n\t    <div class="modal-content">\n\t      <div class="box">\n\t        <slot></slot>\n\t      </div>\n\t    </div>\n\t    <button class="modal-close is-large" aria-label="close" @click="$emit(\'close\')"></button>\n\t  </div>\n\t'
+	template: '\n\t  <div class="modal is-active">\n\t    <div class="modal-background"></div>\n\t    <div class="modal-content">\n\t      <div class="box">\n\t        <slot></slot>\n\t        <slot name="footer"></slot>\n\t      </div>\n\t    </div>\n\t    <button class="modal-close is-large" aria-label="close" @click="$emit(\'close\')"></button>\n\t  </div>\n\t'
 });
 
 Vue.component('tabs', {

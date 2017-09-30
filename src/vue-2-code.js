@@ -36,6 +36,14 @@ Vue.component('click-btn', {
 	}
 });
 
+Vue.component('progress-view', {
+	data() {
+		return {
+			completeRate: 10
+		};
+	}
+});
+
 new Vue({
 
 	el: root,

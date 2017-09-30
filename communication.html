@@ -21,6 +21,12 @@
 	<click-btn></click-btn>
 	<h1 v-show="showApplied">Coupon was applied!</h1>
 
+  <progress-view inline-template>
+    <div>
+      <h1>Your Progress through this course is {{completeRate}}%</h1>
+      <button @click="completeRate += 10">Make Progress</button>
+    </div>
+  </progress-view>
 
 
   </div>
